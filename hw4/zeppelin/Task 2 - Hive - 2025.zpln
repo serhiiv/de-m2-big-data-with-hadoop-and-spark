@@ -1,0 +1,631 @@
+﻿{
+  "paragraphs": [
+    {
+      "title": "Create managed tables of different file storage formats",
+      "text": "%jdbc(hive)\ncreate table if not exists ratings_seq (\n  UserID            int,\n  MovieID           int,\n  Rating            double,\n  Time_stamp         bigint\n)\nSTORED AS SEQUENCEFILE;\n  \n create table if not exists ratings_orc (\n  UserID            int,\n  MovieID           int,\n  Rating            double,\n  Time_stamp         bigint\n)\nSTORED AS ORC;\n  \n  create table if not exists ratings_parquet (\n  UserID            int,\n  MovieID           int,\n  Rating            double,\n  Time_stamp         bigint\n)\nSTORED AS PARQUET;\n\nSHOW TABLES;\n",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:25:02+0000",
+      "config": {
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "sql",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "colWidth": 12,
+        "fontSize": 9,
+        "title": true,
+        "results": {
+          "3": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "tab_name": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          },
+          "4": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "tab_name": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516865743_809796239",
+      "id": "20171025-175127_697314907",
+      "dateCreated": "2025-02-02T17:21:05+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:165",
+      "dateFinished": "2025-02-02T17:25:03+0000",
+      "dateStarted": "2025-02-02T17:25:02+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          },
+          {
+            "type": "TABLE",
+            "data": "tab_name\nmovies_text\nratings_orc\nratings_parquet\nratings_seq\nratings_text\ntags_text\n"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Multitable insert into tables",
+      "text": "%jdbc(hive)\n\nset hive.execution.engine=mr;\nFROM ratings_text\nINSERT OVERWRITE TABLE ratings_seq SELECT UserID, MovieID, Rating, Time_stamp  \nINSERT OVERWRITE TABLE ratings_orc SELECT UserID, MovieID, Rating, Time_stamp\nINSERT OVERWRITE TABLE ratings_parquet SELECT UserID, MovieID, Rating, Time_stamp;\n",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:25:04+0000",
+      "config": {
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "sql",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "colWidth": 12,
+        "fontSize": 9,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "set": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516865743_1953458763",
+      "id": "20171025-175237_1092668331",
+      "dateCreated": "2025-02-02T17:21:05+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:166",
+      "dateFinished": "2025-02-02T17:26:32+0000",
+      "dateStarted": "2025-02-02T17:25:04+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1WARNING: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.\n\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Show create table for a managed table",
+      "text": "%jdbc(hive)\nshow create table ratings_seq;",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:26:32+0000",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "createtab_stmt": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516865743_1319832564",
+      "id": "20210221-163304_904446572",
+      "dateCreated": "2025-02-02T17:21:05+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:167",
+      "dateFinished": "2025-02-02T17:26:33+0000",
+      "dateStarted": "2025-02-02T17:26:32+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "createtab_stmt\nCREATE TABLE `ratings_seq`(\n  `userid` int, \n  `movieid` int, \n  `rating` double, \n  `time_stamp` bigint)\nROW FORMAT SERDE \n  'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe' \nSTORED AS INPUTFORMAT \n  'org.apache.hadoop.mapred.SequenceFileInputFormat' \nOUTPUTFORMAT \n  'org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat'\nLOCATION\n  'hdfs://serhii-20250102-m/user/hive/warehouse/ratings_seq'\nTBLPROPERTIES (\n  'transient_lastDdlTime'='1738517192')\n"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Check size of data for different formats",
+      "text": "%sh\nhdfs dfs -du -s -h /user/hive/warehouse/*\nhdfs dfs -du -s -h /data/external-tables/ratings*",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:26:33+0000",
+      "config": {
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "sh",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/sh",
+        "colWidth": 12,
+        "fontSize": 9,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516865743_929356382",
+      "id": "20171025-175328_510063603",
+      "dateCreated": "2025-02-02T17:21:05+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:168",
+      "dateFinished": "2025-02-02T17:26:38+0000",
+      "dateStarted": "2025-02-02T17:26:33+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "123.0 M  /user/hive/warehouse/ratings_orc\n251.1 M  /user/hive/warehouse/ratings_parquet\n918.1 M  /user/hive/warehouse/ratings_seq\n646.8 M  /data/external-tables/ratings\n"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Rename table",
+      "text": "%jdbc(hive)\nDROP TABLE IF EXISTS ratings;\nALTER TABLE ratings_orc RENAME TO ratings;",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:26:38+0000",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "sql",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "colWidth": 12,
+        "fontSize": 9,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516865743_336542182",
+      "id": "20171025-175432_754330870",
+      "dateCreated": "2025-02-02T17:21:05+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:169",
+      "dateFinished": "2025-02-02T17:26:38+0000",
+      "dateStarted": "2025-02-02T17:26:38+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Create movies and tags tables with ORC format",
+      "text": "%jdbc(hive)\n--set hive.tez.container.size=4096;\nset hive.execution.engine=mr;\ncreate table IF NOT EXISTS movies \nSTORED AS ORC\nas\nSELECT * FROM movies_text;\n\ncreate table IF NOT EXISTS tags\nSTORED AS ORC\nas\n SELECT * FROM tags_text;\n",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:26:38+0000",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "sql",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "colWidth": 12,
+        "fontSize": 9,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516865743_10405465",
+      "id": "20171025-175620_777098208",
+      "dateCreated": "2025-02-02T17:21:05+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:170",
+      "dateFinished": "2025-02-02T17:27:18+0000",
+      "dateStarted": "2025-02-02T17:26:38+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1WARNING: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.\n\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1WARNING: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.\n\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Drop tables and collect statistics",
+      "text": "%jdbc(hive)\nDROP TABLE IF EXISTS movies_text;\nDROP TABLE IF EXISTS ratings_text;\nDROP TABLE IF EXISTS tags_text;\nDROP TABLE IF EXISTS ratings_parquet;\nDROP TABLE IF EXISTS ratings_seq;",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:27:18+0000",
+      "config": {
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "sql",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "colWidth": 12,
+        "fontSize": 9,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516865743_1547521142",
+      "id": "20171025-175734_1147203442",
+      "dateCreated": "2025-02-02T17:21:05+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:171",
+      "dateFinished": "2025-02-02T17:27:21+0000",
+      "dateStarted": "2025-02-02T17:27:18+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Collect statistics for ORC tables",
+      "text": "%jdbc(hive)\nANALYZE TABLE ratings COMPUTE STATISTICS;\nANALYZE TABLE movies COMPUTE STATISTICS;\nANALYZE TABLE tags COMPUTE STATISTICS;",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:27:21+0000",
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516865743_378143266",
+      "id": "20210221-163659_223757409",
+      "dateCreated": "2025-02-02T17:21:05+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:172",
+      "dateFinished": "2025-02-02T17:27:23+0000",
+      "dateStarted": "2025-02-02T17:27:21+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Run some query",
+      "text": "%jdbc(hive)\nset hive.execution.engine=tez;\n-- EXPLAIN EXTENDED\nSELECT UserID, m.MovieID, upper(Title), Genres, if (Rating < 3.0,0.0,Rating)\nFROM ratings r\nJOIN movies m\nON r.MovieID=m.MovieID;\n",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:27:43+0000",
+      "config": {
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "sql",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "colWidth": 12,
+        "fontSize": 9,
+        "title": true,
+        "results": {
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "userid": "string",
+                      "movieid": "string",
+                      "_c2": "string",
+                      "genres": "string",
+                      "_c4": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516865743_1564702524",
+      "id": "20171025-175819_203355897",
+      "dateCreated": "2025-02-02T17:21:05+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:173",
+      "dateFinished": "2025-02-02T17:29:23+0000",
+      "dateStarted": "2025-02-02T17:27:44+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          },
+          {
+            "type": "TABLE",
+            "data": "userid\tmovieid\t_c2\tgenres\t_c4\n162344\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n153921\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159659\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n155930\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156898\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n155572\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n162126\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n151234\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158096\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154485\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158072\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n155125\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n159961\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n150543\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n160401\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153082\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n156677\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n154591\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n157735\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152143\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157205\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150136\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n162150\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n149959\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157203\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n156331\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n156899\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n153247\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157202\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n150805\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n160330\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n153361\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n160331\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n153085\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158656\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n155931\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159654\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153188\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161561\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n150951\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n158093\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156397\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n160399\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n149941\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n161815\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n151841\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n160398\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151408\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n162342\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n154263\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158089\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n156215\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n160397\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n151690\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158696\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153950\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158779\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n150062\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n159112\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n153086\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n162127\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n153767\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156796\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n154906\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n158088\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150064\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159964\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n155414\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n157110\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156140\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159652\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155141\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159113\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n151914\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n162128\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n150753\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n160395\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n152408\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158584\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n152400\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n160335\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151423\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n159609\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151774\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n158804\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n156565\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n158470\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n155115\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n159611\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153467\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158471\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n155257\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n159612\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n156624\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n160393\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152407\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n158483\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n154542\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n160392\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n152674\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n160389\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n152129\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156799\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n150993\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159926\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n149927\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n158622\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n151238\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156908\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153350\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n162338\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n149976\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n158473\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n154045\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n159649\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n151284\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158076\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n152141\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n159648\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150229\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n159970\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n156361\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n160338\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n154084\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n162148\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n156302\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158077\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n153473\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n159872\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154771\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159647\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150228\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n161816\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155218\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n161826\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n155899\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158086\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n152405\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n158801\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152404\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n159615\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n155888\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159874\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n153678\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n158080\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n151931\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n162132\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n152703\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159618\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n156333\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159927\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n156634\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n162336\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153472\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n157115\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150227\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161564\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155939\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n160387\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n149865\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n162335\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n150804\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n160342\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154236\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157087\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155062\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n160343\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153469\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156675\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152403\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n160385\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150225\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158085\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n155219\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n160384\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n152640\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n158474\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n153667\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157737\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n154917\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156672\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151417\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n160381\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n150656\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n160380\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n150653\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n159644\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150224\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n158481\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n151244\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161825\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n154560\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n159623\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n151319\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n159624\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n151291\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n157738\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n151340\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156797\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152134\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n161824\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n154020\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158084\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153471\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n161586\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n154794\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157739\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155937\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n162134\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156268\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157740\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n156547\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159873\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n152641\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n162135\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n151413\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n160369\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n154564\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n157751\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n153664\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n160344\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n151911\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n158651\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153658\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n158785\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152138\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n159627\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n155241\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n157191\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n150968\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n162331\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n154374\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n160367\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n154745\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n159628\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n154243\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158083\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152137\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n158475\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155345\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n160348\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n156137\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158792\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150055\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158479\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n153924\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159633\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n153769\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n162140\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n151412\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n159634\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n151245\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n160349\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n155262\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n160350\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n154594\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n159635\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155812\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n157743\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155468\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161822\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151838\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158081\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n156644\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159637\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n155271\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n159638\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155506\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159639\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n156423\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158680\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n155890\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n159968\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151775\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n160355\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n149905\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n156848\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154391\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n160356\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n152540\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159640\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n153170\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n160363\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n149843\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n160362\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152541\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156673\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n152782\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n160361\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n155990\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n159642\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n152866\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158787\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n154907\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n162334\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n153989\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n160359\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n153931\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161583\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155265\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157746\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n153608\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n157190\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151110\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n160357\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n151667\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n162145\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151693\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n160358\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153301\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n157189\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152539\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161946\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n151763\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n159115\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n150345\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n158560\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153357\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161938\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155398\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n157419\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150071\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159116\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n156262\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158299\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n154484\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n157345\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153624\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n157890\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153166\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n159072\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n152537\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158317\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155349\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n159071\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n155442\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n158595\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152536\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161284\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151111\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161091\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151069\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n161137\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n155176\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157418\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152247\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n161163\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n150728\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n159070\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152588\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n160038\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154513\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161242\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151666\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157012\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151974\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n157360\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150344\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161090\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n154959\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n157343\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155721\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n162467\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n156511\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n161285\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n156621\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n161088\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n151299\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n158296\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n155578\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157429\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n155853\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n162491\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152037\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158362\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156069\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n159068\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154426\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161086\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n154314\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157414\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n154317\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n159125\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n150892\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n158976\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150758\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161905\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152777\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n157412\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150775\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161166\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n152041\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n157350\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n155694\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159126\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154785\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161083\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n153791\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n159127\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n152874\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161168\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n150358\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n161256\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n155807\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n157024\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n156402\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n162466\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n155027\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159062\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n153625\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n158525\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n153693\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n157010\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n155810\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161081\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n155090\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n158635\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n155357\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157362\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n156182\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161239\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n149893\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n157409\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n156615\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161079\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n151867\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n158324\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152875\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161904\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153643\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158309\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n149960\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161078\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n156270\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n157457\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152532\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161286\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152032\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161172\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154188\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159130\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155163\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161072\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150088\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161071\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152030\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158713\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n154664\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161238\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155829\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n159060\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153694\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157025\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153310\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158972\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n150027\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157006\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152776\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n159132\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n156017\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161948\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153169\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n156721\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n151695\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n157406\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n149907\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158540\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n156512\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161174\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n155293\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157340\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153606\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158329\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n155621\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161069\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n155050\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n161149\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n151327\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161949\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n155239\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161289\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154674\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161918\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153721\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n161067\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n155989\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161785\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153939\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n157458\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n155154\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n161178\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156513\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n159083\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155328\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n159082\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155179\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n161950\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n152542\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n162465\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153311\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n158351\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n152876\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n157003\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152204\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161066\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155095\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n157041\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n149949\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n158330\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n153932\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158968\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n149961\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n157460\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n153381\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161063\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151117\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161184\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n150878\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161061\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n156460\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161900\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152843\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158368\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152043\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n158295\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n155693\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n159008\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n156274\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n159141\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n155486\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161952\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152581\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n157466\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n151970\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161954\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153335\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n157467\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n153613\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157002\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n155536\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161292\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n156070\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158690\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n151326\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n161293\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n151782\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161054\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156257\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n160031\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n149892\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158292\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154187\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158636\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n151696\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n156705\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n152526\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156728\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n152544\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n158331\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n153414\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158543\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152856\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161295\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150657\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n161955\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n154962\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159150\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154319\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161237\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152773\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158964\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n155152\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n159059\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n156362\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n159058\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n151300\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158332\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n154454\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n159153\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n152585\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159010\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n155825\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n157402\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152244\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161047\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n151656\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n157894\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n156363\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157401\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151070\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157027\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n153296\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161297\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n150360\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n158371\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n154155\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158372\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n155779\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161046\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n152877\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n161044\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152878\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161298\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153623\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n159057\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n153295\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161236\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n149895\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n159056\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n153995\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n159155\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152879\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n162457\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n152836\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159012\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n155173\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161898\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n150418\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n158714\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n155831\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n161919\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n152522\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161041\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155859\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157469\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152257\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156732\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n150198\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n157399\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154460\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159156\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154625\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n162482\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n149962\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158961\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n156399\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159016\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153799\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n157398\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n155168\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n157352\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155517\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n161186\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n155724\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n157895\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n154861\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157333\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n151653\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161300\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n154191\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n161034\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n155715\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n159053\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n151969\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157046\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154308\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n158289\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n151703\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159158\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151886\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n158960\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152047\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161031\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n155401\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n159052\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n151652\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n157028\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n151651\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158959\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n150342\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n161959\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151650\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n157373\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n154956\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156735\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154543\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161765\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154766\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158594\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152370\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n162453\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152025\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n157470\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n150341\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161021\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n151967\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158957\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n154321\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n161018\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153493\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161191\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n154624\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n157473\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n151704\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158286\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n153293\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n161014\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n155352\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161013\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152297\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n161928\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153500\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n157396\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n151289\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157395\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154859\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161196\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150713\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n162495\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n154588\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n157475\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n155037\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n162484\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n154545\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158955\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n156111\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n158373\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151645\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n159018\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150338\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n158992\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150555\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n157391\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n155984\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158285\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n154388\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n159162\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n155992\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n157040\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155477\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158284\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155180\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n159164\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156314\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n157476\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n155421\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161009\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152177\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n161008\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152519\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158374\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153996\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158600\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150019\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n157987\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n150877\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n159051\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n152222\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n162246\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n150337\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158282\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n155373\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161006\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152881\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158954\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150420\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159019\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151643\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157480\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n154663\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158281\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n153418\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n159050\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153203\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161004\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n152305\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158991\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150963\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n156702\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n154623\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161757\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n150336\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159049\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n151866\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n157481\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n152517\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n162452\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n150472\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n162498\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n150083\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n160996\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156074\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n159170\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n151706\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161229\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n155252\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n158278\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n152591\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161228\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n154483\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157331\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153798\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157896\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152051\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158277\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n150187\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161203\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152052\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n159178\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152831\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158551\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n153334\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158338\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152770\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n160995\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n149909\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n160994\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152263\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n161939\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153723\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161225\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154461\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n157897\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n154682\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n157388\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n150091\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n157387\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n152023\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161205\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n151964\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161897\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n153998\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n162486\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n150362\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n160991\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155323\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n158634\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n155804\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161966\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n153601\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157386\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n151638\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n158276\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n154683\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n159182\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n152516\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159020\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n154940\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161927\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n152594\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n157375\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n151963\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161135\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152056\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n161208\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153171\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157330\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n149929\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n161969\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n153724\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159187\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150587\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n157486\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153292\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n161912\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153307\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n159189\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n152515\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n162538\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n156077\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n161726\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n156263\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n162449\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153849\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n160987\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n155182\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n160983\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154955\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n160982\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n151634\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n161970\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153999\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158379\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151632\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n156658\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n153204\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158275\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n151120\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n159048\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155700\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159192\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150875\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n158612\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n150772\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n157487\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n150150\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158953\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150081\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159047\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154512\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n156861\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n156178\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161210\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n150351\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158952\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n151630\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n157329\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152057\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n162447\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n154862\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161974\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153358\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n160036\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n153289\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156999\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n155777\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161976\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153365\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n158274\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n152058\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161319\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n156366\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n158273\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152022\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158272\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153727\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158271\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153420\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159195\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n153338\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n156860\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n150588\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159085\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n154630\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158345\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n152059\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n159040\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156018\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n161731\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150094\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n157381\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151625\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161924\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n150770\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n161212\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153411\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n161934\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n151977\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n159845\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n155184\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159037\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n152890\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n157353\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154510\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n158950\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n153728\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n157325\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n150978\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157379\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n152264\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157032\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n154148\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n157033\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n155850\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156998\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n156602\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n157489\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n151011\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n160973\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151619\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n158384\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n155465\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n160972\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n152894\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n157037\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n152060\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n157490\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n151793\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158708\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n151072\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n158270\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n155484\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n158268\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n151328\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159196\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n150582\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n159030\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n156357\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n160963\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n154238\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n161893\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n154048\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n161922\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n150580\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n159200\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n150156\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n161978\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n156504\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n159024\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n155261\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.5\n158558\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n151616\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.5\n156841\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n152896\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n161215\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t0.0\n151124\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n158947\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t3.0\n153905\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n160041\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t4.0\n151280\t1\tTOY STORY (1995)\tAdventure|Animation|Children|Comedy|Fantasy\t5.0\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%jdbc\n",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:27:23+0000",
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516865743_500431587",
+      "id": "20210226-123626_386273494",
+      "dateCreated": "2025-02-02T17:21:05+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:174"
+    }
+  ],
+  "name": "Task 2 - Hive - 2025",
+  "id": "2KMDWH42J",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {},
+  "path": "/Task 2 - Hive - 2025"
+}

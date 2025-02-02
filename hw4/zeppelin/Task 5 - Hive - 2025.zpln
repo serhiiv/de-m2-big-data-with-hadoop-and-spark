@@ -1,0 +1,117 @@
+﻿{
+  "paragraphs": [
+    {
+      "title": "Write a query to show top 5 movies with the highest average rating with tag “based on a book” and with tag “based on a play”",
+      "text": "%jdbc(hive)\n\nwith\n    average_rating as (\n        select t.tag, r.movieid, avg(r.rating) as average\n        from tags t\n        join ratings r on t.movieid = r.movieid\n        where t.tag in ('based on a book', 'based on a play')\n        group by t.tag, r.movieid\n    ),\n    \n    ranked_rating as (\n        select tag, movieid, average as rating, dense_rank() over (partition by tag order by average desc) as place\n        from average_rating\n    )\n\nselect tag, place, rating, title\nfrom ranked_rating rr\njoin movies m on rr.movieid = m.movieid\nwhere place < 6\norder by tag , place\n;",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T20:11:22+0000",
+      "config": {
+        "colWidth": 11,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 426,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "tag": "string",
+                      "place": "string",
+                      "rating": "string",
+                      "title": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "lineNumbers": true,
+        "title": true,
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "tag\tplace\trating\ttitle\nbased on a book\t1\t4.5\t\"English\nbased on a book\t2\t4.413576004516335\t\"Shawshank Redemption\nbased on a book\t3\t4.384615384615385\tPollyanna (2003)\nbased on a book\t4\t4.324336165187245\t\"Godfather\nbased on a book\t5\t4.25\t\"Red\nbased on a play\t1\t4.25\tThe Caretaker (1963)\nbased on a play\t2\t4.243014062405697\t12 Angry Men (1957)\nbased on a play\t3\t4.206563778356267\tCasablanca (1942)\nbased on a play\t4\t4.142049808429118\tRan (1985)\nbased on a play\t5\t4.124260355029586\t\"O Auto da Compadecida (Dog's Will\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738525078546_57981891",
+      "id": "paragraph_1738525078546_57981891",
+      "dateCreated": "2025-02-02T19:37:58+0000",
+      "dateStarted": "2025-02-02T20:10:03+0000",
+      "dateFinished": "2025-02-02T20:11:18+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:9765"
+    },
+    {
+      "text": "%jdbc\n",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:40:28+0000",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738518028369_2064526212",
+      "id": "paragraph_1738518028369_2064526212",
+      "dateCreated": "2025-02-02T17:40:28+0000",
+      "status": "READY",
+      "$$hashKey": "object:9766"
+    }
+  ],
+  "name": "Task 5 - Hive - 2025",
+  "id": "2KJWFHGHU",
+  "defaultInterpreterGroup": "jdbc",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {},
+  "path": "/Task 5 - Hive - 2025"
+}

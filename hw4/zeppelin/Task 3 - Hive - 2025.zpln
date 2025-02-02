@@ -1,0 +1,293 @@
+﻿{
+  "paragraphs": [
+    {
+      "title": "Create partitioned table",
+      "text": "%jdbc(hive)\nCREATE TABLE IF NOT EXISTS ratings_task3\n(\n UserID            int,\n  MovieID           int,\n  Rating            double,\n  Time_stamp         timestamp\n)\nPARTITIONED BY (year int)\nSTORED AS ORC;\n",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:29:37+0000",
+      "config": {
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "sql",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "colWidth": 12,
+        "fontSize": 9,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516872272_453851407",
+      "id": "20171025-180020_2075133906",
+      "dateCreated": "2025-02-02T17:21:12+0000",
+      "dateStarted": "2025-02-02T17:29:37+0000",
+      "dateFinished": "2025-02-02T17:29:38+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:668"
+    },
+    {
+      "title": "Insert data and show partitions - this command may fail here, so run it from command line directly",
+      "text": "%jdbc(hive)\nSET hive.exec.dynamic.partition=true;\nSET hive.exec.dynamic.partition.mode=nonstrict;\nSET hive.execution.engine=mr;\n\nINSERT OVERWRITE TABLE ratings_task3 PARTITION (year)\nSelect \nUserID, MovieID, Rating, \nfrom_unixtime(time_stamp) as time_stamp,  \nyear(from_unixtime(time_stamp)) as year\nfrom ratings;\n",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:29:38+0000",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "sql",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "colWidth": 12,
+        "editorHide": false,
+        "fontSize": 9,
+        "title": true,
+        "results": {
+          "3": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "partition": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1WARNING: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.\n\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516872272_119320887",
+      "id": "20171025-180128_1728761619",
+      "dateCreated": "2025-02-02T17:21:12+0000",
+      "dateStarted": "2025-02-02T17:29:38+0000",
+      "dateFinished": "2025-02-02T17:31:52+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:669"
+    },
+    {
+      "title": "Check table partitions",
+      "text": "%jdbc(hive)\nshow partitions ratings_task3;",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:31:52+0000",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "partition": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "partition\nyear=1995\nyear=1996\nyear=1997\nyear=1998\nyear=1999\nyear=2000\nyear=2001\nyear=2002\nyear=2003\nyear=2004\nyear=2005\nyear=2006\nyear=2007\nyear=2008\nyear=2009\nyear=2010\nyear=2011\nyear=2012\nyear=2013\nyear=2014\nyear=2015\nyear=2016\nyear=2017\nyear=2018\nyear=2019\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516872272_1284512692",
+      "id": "20210221-165552_173123108",
+      "dateCreated": "2025-02-02T17:21:12+0000",
+      "dateStarted": "2025-02-02T17:31:52+0000",
+      "dateFinished": "2025-02-02T17:31:52+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:670"
+    },
+    {
+      "title": "Check directories on HDFS",
+      "text": "%sh\nhdfs dfs -ls /user/hive/warehouse/ratings_task3/*\n",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:31:52+0000",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "editOnDblClick": false,
+          "language": "sh",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/sh",
+        "colWidth": 12,
+        "fontSize": 9,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Found 1 items\n-rwxrwxrwt   2 anonymous hadoop        518 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=1995/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    5324680 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=1996/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    2471601 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=1997/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    1140946 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=1998/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    4344565 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=1999/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    7250242 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2000/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    4558299 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2001/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    3469496 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2002/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    4387436 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2003/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    5153097 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2004/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    8376047 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2005/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    5498706 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2006/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    4906706 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2007/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    5365684 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2008/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    4380736 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2009/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    4294264 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2010/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    3700791 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2011/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    3445706 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2012/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    2804542 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2013/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    2590031 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2014/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    8258542 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2015/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    9001290 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2016/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    8723749 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2017/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    6868923 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2018/000000_0\nFound 1 items\n-rwxrwxrwt   2 anonymous hadoop    6172352 2025-02-02 17:31 /user/hive/warehouse/ratings_task3/year=2019/000000_0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516872272_1094748631",
+      "id": "20171025-180223_424965513",
+      "dateCreated": "2025-02-02T17:21:12+0000",
+      "dateStarted": "2025-02-02T17:31:52+0000",
+      "dateFinished": "2025-02-02T17:31:55+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:671"
+    },
+    {
+      "text": "%sh\n",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:31:55+0000",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516872272_1925637878",
+      "id": "20210226-163722_535540877",
+      "dateCreated": "2025-02-02T17:21:12+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:672"
+    }
+  ],
+  "name": "Task 3 - Hive - 2025",
+  "id": "2KNBAPYDU",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {
+    "isRunning": false
+  },
+  "path": "/Task 3 - Hive - 2025"
+}

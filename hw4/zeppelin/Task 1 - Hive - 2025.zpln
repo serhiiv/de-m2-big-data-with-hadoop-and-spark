@@ -1,0 +1,658 @@
+﻿{
+  "paragraphs": [
+    {
+      "title": "Check current user Id",
+      "text": "%sh\nid",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:21:25+0000",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/sh",
+        "colWidth": 12,
+        "editorHide": false,
+        "fontSize": 9,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516842502_1217337521",
+      "id": "20230121-062713_281474001",
+      "dateCreated": "2025-02-02T17:20:42+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:165",
+      "dateFinished": "2025-02-02T17:21:26+0000",
+      "dateStarted": "2025-02-02T17:21:26+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "uid=123(zeppelin) gid=986(zeppelin) groups=986(zeppelin)\n"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Drop tables if they exist on the cluster",
+      "text": "%jdbc(hive)\n\ndrop table if exists ratings_text;\ndrop table if exists movies_text;\ndrop table if exists tags_text;\n",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:21:26+0000",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "colWidth": 12,
+        "editorHide": false,
+        "fontSize": 9,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516842503_1617616850",
+      "id": "20230121-062713_373019954",
+      "dateCreated": "2025-02-02T17:20:42+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:166",
+      "dateFinished": "2025-02-02T17:21:26+0000",
+      "dateStarted": "2025-02-02T17:21:26+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Copy files to HDFS",
+      "text": "%sh\nhdfs dfs -mkdir -p /data/external-tables/ratings\nhdfs dfs -mkdir -p /data/external-tables/tags\nhdfs dfs -mkdir -p /data/external-tables/movies\nhdfs dfs -cp -f gs://oklev-uku-datasets/movie-ratings/ratings.csv /data/external-tables/ratings/ratings.csv\nhdfs dfs -cp -f gs://oklev-uku-datasets/movie-ratings/movies.csv /data/external-tables/movies/movies.csv\nhdfs dfs -cp -f gs://oklev-uku-datasets/movie-ratings/tags.csv /data/external-tables/tags/tags.csv\n",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:21:26+0000",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/sh",
+        "colWidth": 12,
+        "editorHide": false,
+        "fontSize": 9,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516842503_2112145247",
+      "id": "20230121-062713_826598495",
+      "dateCreated": "2025-02-02T17:20:42+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:167",
+      "dateFinished": "2025-02-02T17:21:47+0000",
+      "dateStarted": "2025-02-02T17:21:26+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      }
+    },
+    {
+      "title": "Check that files are on HDFS",
+      "text": "\n%sh\nhdfs dfs -ls /data/external-tables/*/*.csv",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:21:47+0000",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/sh",
+        "colWidth": 12,
+        "editorHide": false,
+        "fontSize": 9,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516842503_2022252191",
+      "id": "20230121-062713_2141459792",
+      "dateCreated": "2025-02-02T17:20:42+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:168",
+      "dateFinished": "2025-02-02T17:21:50+0000",
+      "dateStarted": "2025-02-02T17:21:47+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "-rw-r--r--   2 zeppelin hadoop    3038099 2025-02-02 17:21 /data/external-tables/movies/movies.csv\n-rw-r--r--   2 zeppelin hadoop  678260987 2025-02-02 17:21 /data/external-tables/ratings/ratings.csv\n-rw-r--r--   2 zeppelin hadoop   38810332 2025-02-02 17:21 /data/external-tables/tags/tags.csv\n"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Create external tables",
+      "text": "%jdbc(hive)\ncreate external table IF NOT EXISTS ratings_text (\n  UserID            int,\n  MovieID           int,\n  Rating            double,\n  Time_stamp         bigint\n)\nROW FORMAT DELIMITED\nFIELDS TERMINATED BY ','\nSTORED AS TEXTFILE\nLOCATION '/data/external-tables/ratings'\nTBLPROPERTIES (\"skip.header.line.count\"=\"1\"); -- this is to skip the first header line within the ratings.cvs file\n\ncreate external table IF NOT EXISTS movies_text (\n  MovieID           int,\n  Title            string,\n  Genres           string\n)\nROW FORMAT DELIMITED\nFIELDS TERMINATED BY ','\nSTORED AS TEXTFILE\nLOCATION '/data/external-tables/movies'\nTBLPROPERTIES (\"skip.header.line.count\"=\"1\");\n\ncreate external table IF NOT EXISTS tags_text (\n  UserID            int,\n  MovieID           int,\n  Tag            string,\n  Time_stamp      bigint\n)\nROW FORMAT DELIMITED\nFIELDS TERMINATED BY ','\nSTORED AS TEXTFILE\nLOCATION '/data/external-tables/tags'\nTBLPROPERTIES (\"skip.header.line.count\"=\"1\");",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:21:50+0000",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "colWidth": 12,
+        "editorHide": false,
+        "fontSize": 9,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516842503_185682370",
+      "id": "20230121-062713_1694773351",
+      "dateCreated": "2025-02-02T17:20:42+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:169",
+      "dateFinished": "2025-02-02T17:21:51+0000",
+      "dateStarted": "2025-02-02T17:21:50+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Show tables",
+      "text": "%jdbc(hive)\nshow tables;\n",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:21:51+0000",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "colWidth": 12,
+        "editorHide": false,
+        "fontSize": 9,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "tab_name": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516842503_1902708249",
+      "id": "20230121-062713_769588144",
+      "dateCreated": "2025-02-02T17:20:42+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:170",
+      "dateFinished": "2025-02-02T17:21:51+0000",
+      "dateStarted": "2025-02-02T17:21:51+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "tab_name\nmovies_text\nratings_text\ntags_text\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%jdbc(hive)\n\nselect 'ratings_text' as table_name, count(*) as cnt from ratings_text\nunion all \nselect 'movies_text' as table_name, count(*) as cnt from movies_text\nunion all\nselect 'tags_text' as table_name, count(*) as cnt from tags_text;\n",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:21:51+0000",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "colWidth": 12,
+        "editorHide": false,
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "table_name": "string",
+                      "cnt": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          },
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "table_name": "string",
+                      "cnt": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516842503_10230868",
+      "id": "20230121-062713_992908360",
+      "dateCreated": "2025-02-02T17:20:42+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:171",
+      "dateFinished": "2025-02-02T17:22:33+0000",
+      "dateStarted": "2025-02-02T17:21:51+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "table_name\tcnt\ntags_text\t1093360\nmovies_text\t62423\nratings_text\t25000095\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%jdbc(hive)\nselect * from ratings_text limit 4;\n",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:22:33+0000",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "colWidth": 12,
+        "editorHide": false,
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "userid": "string",
+                      "movieid": "string",
+                      "rating": "string",
+                      "time_stamp": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516842503_339994036",
+      "id": "20230121-062713_1694435560",
+      "dateCreated": "2025-02-02T17:20:42+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:172",
+      "dateFinished": "2025-02-02T17:22:51+0000",
+      "dateStarted": "2025-02-02T17:22:33+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "userid\tmovieid\trating\ttime_stamp\n1\t296\t5.0\t1147880044\n1\t306\t3.5\t1147868817\n1\t307\t5.0\t1147868828\n1\t665\t5.0\t1147878820\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%jdbc(hive)\nselect * from movies_text limit 4;\n",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:23:45+0000",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "completionKey": "TAB",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "language": "sql"
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "movieid": "string",
+                      "title": "string",
+                      "genres": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516842503_1259960372",
+      "id": "paragraph_1674297496950_908934234",
+      "dateCreated": "2025-02-02T17:20:42+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:173",
+      "dateFinished": "2025-02-02T17:23:35+0000",
+      "dateStarted": "2025-02-02T17:23:18+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "movieid\ttitle\tgenres\n1\tToy Story (1995)\tAdventure|Animation|Children|Comedy|Fantasy\n2\tJumanji (1995)\tAdventure|Children|Fantasy\n3\tGrumpier Old Men (1995)\tComedy|Romance\n4\tWaiting to Exhale (1995)\tComedy|Drama|Romance\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%jdbc(hive)\nselect * from ratings_text limit 4;",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:24:02+0000",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "userid": "string",
+                      "movieid": "string",
+                      "rating": "string",
+                      "time_stamp": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738516998446_1922767865",
+      "id": "paragraph_1738516998446_1922767865",
+      "dateCreated": "2025-02-02T17:23:18+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:2071",
+      "dateFinished": "2025-02-02T17:23:53+0000",
+      "dateStarted": "2025-02-02T17:23:35+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "userid\tmovieid\trating\ttime_stamp\n1\t296\t5.0\t1147880044\n1\t306\t3.5\t1147868817\n1\t307\t5.0\t1147868828\n1\t665\t5.0\t1147878820\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%jdbc\n",
+      "user": "anonymous",
+      "dateUpdated": "2025-02-02T17:23:35+0000",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1738517015892_1583652130",
+      "id": "paragraph_1738517015892_1583652130",
+      "dateCreated": "2025-02-02T17:23:35+0000",
+      "status": "READY",
+      "focus": true,
+      "$$hashKey": "object:2243"
+    }
+  ],
+  "name": "Task 1 - Hive - 2025",
+  "id": "2KN627PWZ",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {},
+  "path": "/Task 1 - Hive - 2025"
+}
